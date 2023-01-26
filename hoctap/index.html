@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <script src="./main.js" type="modules"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const root = document.getElementById("root");
+
+        const courses = [
+            {
+                title: "Kiến Thức Nhập Môn IT",
+                description:
+                "Để có cái nhìn tổng quan về ngành IT - Lập trình web các bạn nên xem các videos tại khóa này trước nhé.",
+                students_count: 56546,
+                image: "https://files.fullstack.edu.vn/f8-prod/courses/7.png"
+            },
+            {
+                title: "HTML CSS từ Zero đến Hero",
+                description:
+                "Trong khóa này chúng ta sẽ cùng nhau xây dựng giao diện 2 trang web là The Band & Shopee.",
+                students_count: 435735,
+                image: "https://files.fullstack.edu.vn/f8-prod/courses/2.png"
+            },
+            {
+                title: "Responsive Với Grid System",
+                description:
+                "Trong khóa này chúng ta sẽ học về cách xây dựng giao diện web responsive với Grid System, tương tự Bootstrap 4.",
+                students_count: 231225,
+                image: "https://files.fullstack.edu.vn/f8-prod/courses/3.png"
+            }
+        ];
+        function PostItem() {
+            return (
+                <div className="post-item">
+                    <img src="https://images.unsplash.com/file-1662566326028-7013d2f857a6image" alt=""></img>
+                    <h2 className="post-title">C#(.NET) - Tương tác với F8 fullstack</h2>
+                    <p className="post-description">Bạn có kiến thức</p>
+                    <p className="post-published">Một ngày trước</p>
+                </div>  
+            );
+        }
+
+
+        function CourseItem({
+            image,
+            title,
+            description,
+            studentsCount,
+            onClick
+        }) {
+            return (
+                <div className="post-item">
+                    <img src={image} alt="" onClick={onClick}></img>
+                    <h2 className="post-title">{title}</h2>
+                    <p className="post-description">{description}</p>
+                    <p className="post-student-count">{studentsCount}</p>
+                </div>  
+            )
+        }
+
+
+        const ul = <ul>
+                {
+                    courses.map((course,index) => <li className="abc" key={index}>{course.name}</li>)
+                }
+            </ul>
+
+        function Button({ title, href, onClick}) {
+
+            let Component = "button";
+            const props = {}
+
+
+            if (href) {
+                Component = "a"
+                props.href = href
+            }
+                
+            if (onClick) 
+                props.onClick = onClick
+
+            console.log({...props});
+            return (
+                <Component {...props} >{title}</Component>
+            );
+        }
+        function App() {
+
+            
+
+            // const handleClick = (course) => {
+            //     alert(course);
+            // }
+
+            // return (
+            //     <div className="posts-list">
+            //         {
+            //             courses.map(
+            //                 (course,index) => 
+            //                     <CourseItem 
+            //                         title = {course.title} 
+            //                         image = {course.image}  
+            //                         description = {course.description}
+            //                         studentsCount = {course.students_count}
+            //                         onClick = {() => handleClick(course.title)}
+            //                     >
+            //                     </CourseItem>
+            //             )
+            //         }
+            //     </div>
+            // );
+
+
+            // return (
+            //     <div id="wrapper">
+            //         <Button 
+            //             title="Click me" 
+            //             href="https://fullstack.edu.vn/"
+            //             onClick = {() => console.log(Math.random())}
+            //         />
+            //     </div>
+            // )
+                
+        }
+
+        ReactDOM.render(<App/>,root);
+    </script>
+</body>
+</html>
