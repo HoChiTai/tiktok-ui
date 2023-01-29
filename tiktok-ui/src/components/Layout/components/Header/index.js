@@ -4,13 +4,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
     faCircleQuestion,
     faCircleXmark,
-    faCloudUpload,
     faCoins,
     faEarthAsia,
     faEllipsisVertical,
     faGear,
     faKeyboard,
-    faMessage,
     faSearch,
     faSignOut,
     faSpinner,
@@ -26,6 +24,8 @@ import styles from "./Header.module.scss";
 import images from "~/assets/images";
 import AccountItem from "~/components/AccountItem";
 import Menu from "~/components/Popper/Menu";
+import { InboxIcon, MessageIcon, UploadIcon } from "~/components/Icons";
+import Image from "~/components/Image";
 
 const cx = classNames.bind(styles);
 
@@ -137,14 +137,22 @@ function Header() {
                 <div className={cx("action")}>
                     {currentUser ? (
                         <>
-                            <Tippy delay={[0, 200]} content="Upload video" placement="bottom">
+                            <Tippy delay={[0, 50]} content="Upload video" placement="bottom">
                                 <button className={cx("action-btn")}>
-                                    <FontAwesomeIcon icon={faCloudUpload} />
+                                    <UploadIcon />
                                 </button>
                             </Tippy>
-                            <button className={cx("action-btn")}>
-                                <FontAwesomeIcon icon={faMessage} />
-                            </button>
+                            <Tippy delay={[0, 50]} content="Message" placement="bottom">
+                                <button className={cx("action-btn")}>
+                                    <MessageIcon />
+                                </button>
+                            </Tippy>
+                            <Tippy delay={[0, 50]} content="Inbox" placement="bottom">
+                                <button className={cx("action-btn")}>
+                                    <InboxIcon />
+                                    <span className={cx("badge")}>12</span>
+                                </button>
+                            </Tippy>
                         </>
                     ) : (
                         <>
@@ -154,7 +162,7 @@ function Header() {
                     )}
                     <Menu items={currentUser ? userMenu : MENU_ITEMS} onChange={handleMenuChange}>
                         {currentUser ? (
-                            <img
+                            <Image
                                 src="https://haycafe.vn/wp-content/uploads/2022/02/Anh-avatar-that-tinh.jpg"
                                 alt="Hoaa"
                                 className={cx("user-avatar")}
